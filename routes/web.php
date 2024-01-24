@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -23,6 +24,10 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/registration',[AuthController::class, 'registration'])->name('registration');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', [AuthController::class, 'userLogin'])->name('user.login');
-Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
-Route::get('/admin/dashboard', [UserController::class, 'adminDashboard'])->name('admin.dashboard');
+Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/checkout', [UserController::class, 'checkout'])->name('checkout');
+
+//Admin Routes
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/users', [AdminController::class, 'users'])->name('users.all');

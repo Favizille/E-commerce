@@ -32,7 +32,6 @@ class AuthController extends Controller
         $user = new User;
         $user->create($registrationData);
 
-        // return redirect()->route("user.dashboard");
         return view('dashboard', ["user" => User::where('email', $request->email)->first()]);
     }
 

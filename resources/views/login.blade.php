@@ -37,14 +37,14 @@
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="password">
                   </div>
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Login</button>
+                    <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">Login</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
 
                     <a href="#" class="auth-link text-black">Forgot password?</a>
                   </div>
 
-                  <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="{{ route("register")}}" class="text-primary">Create</a>
+                  <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="{{ route("register")}}" class="text-warning">Create</a>
                   </div>
                 </form>
 
