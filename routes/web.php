@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -16,18 +17,30 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/registration',[AuthController::class, 'registration'])->name('registration');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/login', [AuthController::class, 'userLogin'])->name('user.login');
-Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/checkout', [UserController::class, 'checkout'])->name('checkout');
+
+
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/checkout', [UserController::class, 'checkout'])->name('checkout');
+});
 
 //Admin Routes
+Route::middleware('auth')->group(function(){
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::get('/users', [AdminController::class, 'users'])->name('users.all');
+Route::get('/users', [AdminController::class, 'users'])->name('users.all')->middleware('auth');
+});
+
+// Product Routes
+Route::middleware('auth')->group(function(){
+    Route::get('/product', [ProductController::class, 'add'])->name('product.add');
+    Route::post('/product/create', [ProductController::class, 'create'])->name('product.create');
+});
