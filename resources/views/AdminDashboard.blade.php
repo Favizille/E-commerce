@@ -253,7 +253,6 @@ N/B; push it to git and share with the link on whatsapp
             </div>
           </nav>
           <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
               <ul class="nav">
                 <li class="nav-item nav-category">Main</li>
@@ -273,7 +272,7 @@ N/B; push it to git and share with the link on whatsapp
                 <li class="nav-item">
                   <a class="nav-link" href="pages/icons/mdi.html">
                     <span class="icon-bg"><i class="mdi mdi-contacts menu-icon"></i></span>
-                    <span class="menu-title">Icons</span>
+                    <span class="menu-title">Products</span>
                   </a>
                 </li>
                 <li class="nav-item">

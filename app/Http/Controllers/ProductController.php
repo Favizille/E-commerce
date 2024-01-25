@@ -7,6 +7,13 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public $product;
+
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+
     public function add(){
         return view("AddProduct");
     }
@@ -20,20 +27,46 @@ class ProductController extends Controller
             "status" => "required",
         ]);
 
-        Product::create($product);
+        $this->product->create($product);
 
         return redirect()->route('user.dashboard');
     }
 
-    public function edit(){
-        return view("EditProduct");
+    public function getall(){
+        return view("Product.Products");
     }
 
-    public function update(Request $request){
+    public function edit($produtID){
 
+        return view("Product/EditProduct", ["product" => $this->product->find($produtID)]);
     }
 
-    public function delete(){
+    public function update(Request $request, $productID){
 
+        $request->validate([
+        'name' => 'required',
+        'description' => 'required',
+        'price' => 'required',
+        'quantity' => 'required',
+        'status' => 'required',
+        ]);
+
+        $product = $this->product->find($productID);
+
+        // dd($productID);
+
+        if(! $product->update($request->all())){
+           return redirect()->back()->withErrors( 'Unable to Update');
+        }
+        return redirect()->route('product.edit', $product->id)
+        ->with('message', 'Product updated successfully.');
+    }
+
+    public function delete($productID){
+        $product = $this->product->find($productID);
+
+        $product->delete();
+
+        return redirect()->route('user.dashboard')->with('success','Successfully Deleted');
     }
 }

@@ -43,4 +43,8 @@ Route::get('/users', [AdminController::class, 'users'])->name('users.all')->midd
 Route::middleware('auth')->group(function(){
     Route::get('/product', [ProductController::class, 'add'])->name('product.add');
     Route::post('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/product/edit/{productID}', [ProductController::class, 'edit'])->name('product.edit');
+    Route::put('/product/update/{productID}', [ProductController::class, 'update'])->name('product.update');
+    Route::delete('/product/delete', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/product/all', [ProductController::class, 'getall'])->name('products.all');
 });
