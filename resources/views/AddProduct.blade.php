@@ -46,7 +46,13 @@
   <body>
    <div class="container">
     <div class="container py-3 mt-5 mx-5">
-        <h1>ADD PRODUCT</h1>
+        <div class=" row d-flex">
+
+            <h1>ADD PRODUCT</h1>
+            <form action="{{route("products.all")}}" method="GET">
+                <button type="submit" class="btn btn-primary">Products</button>
+            </form>
+        </div>
         <form action="{{route('product.create')}}" method="POST">
             @csrf
         <div class="mb-3">

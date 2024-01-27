@@ -7,14 +7,18 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
+    protected $user;
+
+    public function __construct(User $user){
+        $this->user = $user;
+    }
+
     public function dashboard(){
-        $user = new User;
-        $users = $user->all();
-        return view('AdminDashboard', ['users' => $users]);
+        return view('AdminDashboard');
     }
 
 
   public function users(){
-    return view("users");
+    return view("users", ["users" => $this->user->all()]);
   }
 }

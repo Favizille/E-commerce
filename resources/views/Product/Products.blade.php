@@ -254,125 +254,62 @@
                   <li class="breadcrumb-item"><a href="{{route("admin.dashboard")}}">Dashboard</a></li>
                   <li class="breadcrumb-item active" aria-current="page">products</li>
                 </ol>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="{{route("product.add")}}">Add New Product</a></li>
+                </ol>
               </nav>
             </div>
-            <div class="row">
-                <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="card">
-                      <div class="card-body">
-                        <table class="table table-striped">
-                          <thead>
-                            <tr>
-                              <th> ID </th>
-                              <th> Name </th>
-                              <th> Price</th>
-                              <th> Quantity </th>
-                              <th> Action</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Product</th>
+                          <th>Price(Naira)</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          @isset($products)
+                            @foreach ($products as $product )
+                                <tr>
+                                    <td>{{$product->id}}</td>
+                                    <td> <a href="{{route("checkout")}}" style="text-decoration: none"> {{$product->name}}</a></td>
+                                    <td class=""> {{$product->price}} </td>
+                                    <td>
+                                        @if($product->status === "IN-STOCK")
+                                        <label class="badge badge-success">{{$product->status}}</label>
+                                        @else
+                                        <label class="badge badge-danger">{{$product->status}}</label>
+                                        @endIf
+                                    </td>
+                                    <td>
+                                        <div class="d-flex row">
+
+                                            <form action="{{route("product.edit", $product->id)}}" method="GET" class="col-3">
+                                                @csrf
+                                                <button class="btn btn-light" type="submit">Edit</button>
+                                            </form>
+
+                                            <div class="col-1"></div>
+
+                                            <form action="{{route("product.edit", $product->id)}}" method="POST"  class="col-3">
+                                                @csrf
+                                                @method("DELETE")
+                                                <button class="btn btn-light" type="submit">Delete</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                              </tr>
+                            @endforeach
+                          @endisset
+                      </tbody>
+                    </table>
                   </div>
-            </div>
+                </div>
+              </div>
           </div>
           <footer class="footer">
             <div class="footer-inner-wraper">

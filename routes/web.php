@@ -30,7 +30,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
-    Route::get('/checkout', [UserController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout/{productID}', [UserController::class, 'checkout'])->name('checkout');
 });
 
 //Admin Routes
@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function(){
     Route::post('/product/create', [ProductController::class, 'create'])->name('product.create');
     Route::get('/product/edit/{productID}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/update/{productID}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('/product/delete', [ProductController::class, 'delete'])->name('product.delete');
-    Route::get('/product/all', [ProductController::class, 'getall'])->name('products.all');
+    Route::delete('/product/delete/{productID}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/products', [ProductController::class, 'getall'])->name('products.all');
 });
+

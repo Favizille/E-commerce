@@ -29,11 +29,11 @@ class ProductController extends Controller
 
         $this->product->create($product);
 
-        return redirect()->route('user.dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function getall(){
-        return view("Product.Products");
+        return view("Product.Products", ["products" =>  $this->product->all()]);
     }
 
     public function edit($produtID){
@@ -67,6 +67,6 @@ class ProductController extends Controller
 
         $product->delete();
 
-        return redirect()->route('user.dashboard')->with('success','Successfully Deleted');
+        return redirect()->route('products.all')->with('success','Successfully Deleted');
     }
 }
