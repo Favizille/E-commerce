@@ -270,102 +270,29 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
-                            <tr>
-                              <td class="py-1">
-                                1
-                              </td>
-                              <td> Herman Beck </td>
-                              <td> herman@email.com </td>
-                              <td> May 15, 2015 </td>
-                            </tr>
+                            @foreach ($users as $user)
+                            @if ($user->name === "Admin")
+                                <tr hidden>
+                                    <td class="py-1">
+                                    {{$user->id}}
+                                    </td>
+                                    <td> {{$user->name}}</td>
+                                    <td> {{$user->email}} </td>
+                                    <td> {{$user->created_at}} </td>
+                                </tr>
+                            @else
+                                <tr>
+                                    <td class="py-1">
+                                    {{$user->id}}
+                                    </td>
+                                    <td> {{$user->name}}</td>
+                                    <td> {{$user->email}} </td>
+                                    <td> {{$user->created_at}} </td>
+                                </tr>
+                            @endif
+
+                            @endforeach
+
                           </tbody>
                         </table>
                       </div>

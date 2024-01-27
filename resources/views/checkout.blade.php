@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <!-- Topbar Start -->
+    @isset($product)
     <div class="container-fluid">
         <div class="row bg-secondary py-1 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
@@ -101,7 +101,7 @@
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
+    @endisset
 
 
     <!-- Navbar Start -->
@@ -218,8 +218,12 @@
                 </div>
             </div>
 
+
             <div class="col-lg-7 h-auto mb-30">
                 <div class="h-100 bg-light p-30">
+
+
+
                     <h3>Product Name Goes Here</h3>
                     <div class="d-flex mb-3">
                         <div class="text-primary mr-2">
