@@ -457,7 +457,7 @@
                     <div class="text-center py-4">
                         <a class="h6 text-decoration-none text-truncate" href="{{route("checkout", $product->id)}}"><h2>{{$product->name}}</h2></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>{{$product->price}}</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                            <h5>${{$product->price}}</h5><h6 class="text-muted ml-2"><del>$12000.00</del></h6>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-center mb-1">
@@ -469,7 +469,7 @@
                         </div>
 
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <form action="{{route('checkout')}}" method="GET">
+                            <form action="{{route('checkout',$product->id)}}" method="GET">
                                 <button type="submit" class="btn btn-primary">MORE</button>
                             </form>
                         </div>
@@ -1305,7 +1305,7 @@
 
 
     <!-- Products Start -->
-    <div class="container-fluid pt-5 pb-3">
+    {{-- <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent Products</span></h2>
         <div class="row px-xl-5">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -1525,7 +1525,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Products End -->
 
 

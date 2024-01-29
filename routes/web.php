@@ -49,3 +49,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/products', [ProductController::class, 'getall'])->name('products.all');
 });
 
+
+// 2. Checkout
+// 3. Adding Roles to Users
