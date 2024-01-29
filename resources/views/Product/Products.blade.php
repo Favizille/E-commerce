@@ -276,7 +276,7 @@
                             @foreach ($products as $product )
                                 <tr>
                                     <td>{{$product->id}}</td>
-                                    <td> <a href="{{route("checkout")}}" style="text-decoration: none"> {{$product->name}}</a></td>
+                                    <td> <a href="{{route("checkout", $product->id)}}" style="text-decoration: none"> {{$product->name}}</a></td>
                                     <td class=""> {{$product->price}} </td>
                                     <td>
                                         @if($product->status === "IN-STOCK")
