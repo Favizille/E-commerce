@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    protected $user;
+    protected $product;
+
+    public function __construct(User $user, Product $product)
+    {
+        $this->user = $user;
+        $this->product = $product;
+    }
+
     public function register(){
         return view("register");
     }
@@ -16,6 +26,7 @@ class AuthController extends Controller
         $request->validate([
             "name" => "required",
             "email" => "required",
+            "role" => "required",
             "password" => "required",
             "password_confirmation" => "required"
         ]);
@@ -26,13 +37,14 @@ class AuthController extends Controller
             "name" => $request->name,
             "email" => $request->email,
             "password" => $request->password,
+            "role" => $request->role,
             "password_confirmation" => $request->password_confirmation
         ];
 
-        $user = new User;
-        $user->create($registrationData);
 
-        return view('dashboard', ["user" => User::where('email', $request->email)->first()]);
+        $this->user->create($registrationData);
+
+        return view('dashboard', ["user" => User::where('email', $request->email)->first(), 'products'=> $this->product->all()]);
     }
 
     public function userLogin(){
@@ -52,7 +64,14 @@ class AuthController extends Controller
         ];
 
         if(Auth::attempt($credentials)){
-            return view('dashboard', ["user" => User::where('email', $request->email)->first()]);
+            $user = $this->user->where('email', $request->email)->first();
+
+            if($user->role !== 'admin'){
+                return view('dashboard', ["user"=> $user,"products" => $this->product->all()]);
+            }
+
+            return redirect()->route("admin.dashboard");
+
         }
 
         return redirect()->route('user.login')->withErrors("Login Credentials are invalid");

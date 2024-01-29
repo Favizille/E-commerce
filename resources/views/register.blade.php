@@ -16,7 +16,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="{{ asset("admin/assets/css/style.css")}}">
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="{{ asset("admin/assets/images/favicon.png")}}">
+    <link rel="shortcut icon" ghref="{{ asset("admin/assets/images/favicon.png")}}">
   </head>
   <body>
     <div class="container-scroller">
@@ -44,6 +44,7 @@
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Confirm Password" name="password_confirmation" required>
                   </div>
+                  <input type="hidden" class="form-control form-control-lg"  placeholder="Confirm Password" name="role" value="user" required>
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">Register</button>
                   </div>
