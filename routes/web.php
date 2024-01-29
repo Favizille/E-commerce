@@ -48,7 +48,3 @@ Route::middleware('auth')->group(function(){
     Route::delete('/product/delete/{productID}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/products', [ProductController::class, 'getall'])->name('products.all');
 });
-
-
-// 2. Checkout
-// 3. Adding Roles to Users

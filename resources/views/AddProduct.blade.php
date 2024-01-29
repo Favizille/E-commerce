@@ -48,8 +48,9 @@
     <div class="container py-3 mt-5 mx-5">
         <div class=" row d-flex">
 
-            <h1>ADD PRODUCT</h1>
-            <form action="{{route("products.all")}}" method="GET">
+            <h1 class="col-3">ADD PRODUCT</h1>
+            <div class="col-5"></div>
+            <form action="{{route("products.all")}}" method="GET" class="col-3">
                 <button type="submit" class="btn btn-primary">Products</button>
             </form>
         </div>
@@ -61,7 +62,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Description</label>
-          <input type="text" class="form-control" name="description">
+          <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
         </div>
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Price</label>
@@ -72,8 +73,7 @@
           <input type="text" class="form-control" name="quantity">
         </div>
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Status</label>
-          <input type="text" class="form-control" name="status">
+          <input type="hidden" class="form-control" name="status" value="IN-STOCK">
         </div>
 
         <button type="submit" class="btn btn-primary">Create Product</button>
