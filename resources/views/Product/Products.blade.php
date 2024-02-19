@@ -295,7 +295,7 @@
 
                                             <div class="col-1"></div>
 
-                                            <form action="{{route("product.edit", $product->id)}}" method="POST"  class="col-3">
+                                            <form action="{{route("product.edit", $product->id)}}" method="GET"  class="col-3">
                                                 @csrf
                                                 @method("DELETE")
                                                 <button class="btn btn-light" type="submit">Delete</button>
