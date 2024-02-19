@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,6 @@ Route::middleware('auth')->group(function(){
     Route::delete('/product/delete/{productID}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/products', [ProductController::class, 'getall'])->name('products.all');
 });
+
+// Cart Route
+Route::get("/cart/{productID}", [CartController::class, 'createCart'])->name('cart');

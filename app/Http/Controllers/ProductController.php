@@ -29,7 +29,7 @@ class ProductController extends Controller
 
         $this->product->create($product);
 
-        return redirect()->route('admin.dashboard');
+        return redirect()->route('product.all');
     }
 
     public function getall(){
