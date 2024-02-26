@@ -52,3 +52,43 @@ Route::middleware('auth')->group(function(){
 
 // Cart Route
 Route::get("/cart/{productID}", [CartController::class, 'createCart'])->name('cart');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 1. Delete Product Image
+// 2. CART CRUD
+// 3. Order CRUD
+// 4. Payment

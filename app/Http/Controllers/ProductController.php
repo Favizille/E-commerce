@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use File;
 
 class ProductController extends Controller
 {
@@ -97,8 +98,16 @@ class ProductController extends Controller
     public function deleteProduct($productID){
         $product = $this->product->find($productID);
 
-        $product->delete();
+        $destination = 'upload/product/'.$product->image;
 
-        return redirect()->route('products.all')->with('success','Successfully Deleted');
+        if(file::exists($destination)){
+            file::delete($destination);
+        }
+
+        if(!$product->delete()){
+            return redirect()->route('product.all')->withErrors('Could not delete product');
+        }
+
+        return redirect()->route('product.all');
     }
 }
