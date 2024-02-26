@@ -266,6 +266,7 @@
                       <thead>
                         <tr>
                           <th>ID</th>
+                          <th>Image</th>
                           <th>Product</th>
                           <th>Price(Naira)</th>
                           <th>Status</th>
@@ -276,6 +277,9 @@
                             @foreach ($products as $product )
                                 <tr>
                                     <td>{{$product->id}}</td>
+                                    <td>
+                                        <img src="{{ asset('uploads/product/'.$product->image)}}" alt="Product Image" >
+                                    </td>
                                     <td> <a href="{{route("checkout", $product->id)}}" style="text-decoration: none"> {{$product->name}}</a></td>
                                     <td class=""> {{$product->price}} </td>
                                     <td>

@@ -50,11 +50,11 @@
 
             <h1 class="col-3">ADD PRODUCT</h1>
             <div class="col-5"></div>
-            <form action="{{route("products.all")}}" method="GET" class="col-3">
+            <form action="{{route("product.all")}}" method="GET" class="col-3">
                 <button type="submit" class="btn btn-primary">Products</button>
             </form>
         </div>
-        <form action="{{route('product.create')}}" method="POST">
+        <form action="{{route('product.create')}}" method="POST" enctype="multipart/form-data">
             @csrf
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Product Name</label>
@@ -74,6 +74,9 @@
         </div>
         <div class="mb-3">
           <input type="hidden" class="form-control" name="status" value="IN-STOCK">
+        </div>
+        <div class="mb-3">
+            <input type="file" class="form-control" name="image">
         </div>
 
         <button type="submit" class="btn btn-primary">Create Product</button>

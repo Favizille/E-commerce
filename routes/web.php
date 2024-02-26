@@ -19,7 +19,7 @@ use App\Http\Controllers\ProductController;
 */
 
 // Route::get('/', function () {
-//     return view('welcome');
+//     return view('welcome');f
 // });
 
 Route::get('/register', [AuthController::class, 'register'])->name('register');
@@ -42,12 +42,12 @@ Route::get('/users', [AdminController::class, 'users'])->name('users.all')->midd
 
 // Product Routes
 Route::middleware('auth')->group(function(){
-    Route::get('/product', [ProductController::class, 'add'])->name('product.add');
-    Route::post('/product/create', [ProductController::class, 'create'])->name('product.create');
-    Route::get('/product/edit/{productID}', [ProductController::class, 'edit'])->name('product.edit');
-    Route::put('/product/update/{productID}', [ProductController::class, 'update'])->name('product.update');
-    Route::delete('/product/delete/{productID}', [ProductController::class, 'delete'])->name('product.delete');
-    Route::get('/products', [ProductController::class, 'getall'])->name('products.all');
+    Route::get('/product', [ProductController::class, 'addProduct'])->name('product.add');
+    Route::post('/product/create', [ProductController::class, 'createProduct'])->name('product.create');
+    Route::get('/product/edit/{productID}', [ProductController::class, 'editProduct'])->name('product.edit');
+    Route::put('/product/update/{productID}', [ProductController::class, 'updateProduct'])->name('product.update');
+    Route::delete('/product/delete/{productID}', [ProductController::class, 'deleteProduct'])->name('product.delete');
+    Route::get('/products', [ProductController::class, 'getAllProducts'])->name('product.all');
 });
 
 // Cart Route

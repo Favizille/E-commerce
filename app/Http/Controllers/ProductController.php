@@ -14,55 +14,87 @@ class ProductController extends Controller
         $this->product = $product;
     }
 
-    public function add(){
+    public function addProduct(){
         return view("AddProduct");
     }
 
-    public function create(Request $request){
-        $product= $request->validate([
-            "name" => "required",
-            "description" => "required",
-            "price"=> "required",
-            "quantity" => "required",
-            "status" => "required",
-        ]);
+    public function createProduct(Request $request){
+        // $product= $request->validate([
+        //     "name" => "required",
+        //     "description" => "required",
+        //     "price"=> "required",
+        //     "quantity" => "required",
+        //     "status" => "required",
+        //     "image" => "required",
+        // ]);
 
-        $this->product->create($product);
+        // $product = new Product;
+        $this->product->name = $request->input('name');
+        $this->product->description = $request->input('description');
+        $this->product->price = $request->input('price');
+        $this->product->quantity = $request->input('quantity');
+        $this->product->status = $request->input('status');
+
+        if($request->hasfile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time(). '.' .$extension;
+            $file->move('uploads/product/', $filename);
+            $this->product->image = $filename;
+        }else{
+            return $request;
+            $this->product->image = '';
+        }
+
+        $this->product->save();
 
         return redirect()->route('product.all');
     }
 
-    public function getall(){
+    public function getAllProducts(){
         return view("Product.Products", ["products" =>  $this->product->all()]);
     }
 
-    public function edit($produtID){
+    public function editProduct($produtID){
 
         return view("Product/EditProduct", ["product" => $this->product->find($produtID)]);
     }
 
-    public function update(Request $request, $productID){
-
-        $request->validate([
-        'name' => 'required',
-        'description' => 'required',
-        'price' => 'required',
-        'quantity' => 'required',
-        'status' => 'required',
-        ]);
+    public function updateProduct(Request $request, $productID){
 
         $product = $this->product->find($productID);
 
-        // dd($productID);
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->quantity = $request->input('quantity');
+        $product->status = $request->input('status');
 
-        if(! $product->update($request->all())){
-           return redirect()->back()->withErrors( 'Unable to Update');
+        if($request->hasfile('image')){
+
+            $destination = 'upload/product/'.$product->image;
+            if(file::exists($destination)){
+                file::delete($destination);
+            }
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time(). '.' .$extension;
+            $file->move('uploads/product/', $filename);
+            $product->image = $filename;
+        }else{
+            return $request;
+            $product->image = '';
         }
-        return redirect()->route('product.edit', $product->id)
-        ->with('message', 'Product updated successfully.');
+
+        if(! $product->update()){
+           return redirect()->route('product.edit', $product->id)->withErrors( 'Unable to Update');
+        }
+
+        return redirect()->route('product.edit', $product->id)->with('message', 'Product updated successfully.');
     }
 
-    public function delete($productID){
+    public function deleteProduct($productID){
         $product = $this->product->find($productID);
 
         $product->delete();
