@@ -262,6 +262,13 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
+                    @if(count($errors) > 0)
+                        @foreach( $errors->all() as $message )
+                            <div class="alert alert-danger display-hide">
+                            <span>{{ $message }}</span>
+                            </div>
+                        @endforeach
+                    @endif
                     <table class="table table-hover">
                       <thead>
                         <tr>
@@ -299,7 +306,7 @@
 
                                             <div class="col-1"></div>
 
-                                            <form action="{{route("product.edit", $product->id)}}" method="GET"  class="col-3">
+                                            <form action="{{route("product.delete", $product->id)}}" method="POST"  class="col-3">
                                                 @csrf
                                                 @method("DELETE")
                                                 <button class="btn btn-light" type="submit">Delete</button>
