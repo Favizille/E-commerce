@@ -8,13 +8,13 @@
   </head>
   <body>
    <div class="container">
-    <div class="container py-3 mt-5 mx-5">
+    <div class="container py-3 mt-2 mx-5">
         <div class="row d-flex">
             <h1 class="col-4">Edit Product</h1>
             <div class="col-6"></div>
-            <form action="{{route('admin.dashboard')}}" method="GET" class="col-2">
+            <form action="{{route('product.all')}}" method="GET" class="col-2">
                @csrf
-                <button type="submit" class="btn btn-primary">Dashboard</button>
+                <button type="submit" class="btn btn-primary">Products</button>
             </form>
         </div>
         @if(session()->has('message'))
@@ -30,7 +30,7 @@
                 </div>
             @endforeach
         @endif
-        <form action="{{route('product.update', $product->id)}}" method="POST">
+        <form action="{{route('product.update', $product->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
         <div class="mb-3">
@@ -52,6 +52,11 @@
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Status</label>
           <input type="text" class="form-control" name="status" value="{{old('status', $product->status)}}">
+        </div>
+        <div class="mb-3">
+          <label for="Image" class="form-label">Image</label>
+          <input type="file" class="form-control" name="image">
+          <img src="{{ asset('uploads/product/'.$product->image)}}" alt="" width="70px" height="70px">
         </div>
 
         <button type="submit" class="btn btn-primary">Edit Product</button>
